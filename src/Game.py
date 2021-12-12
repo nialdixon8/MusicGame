@@ -6,11 +6,15 @@ DARK_GREY = (150,150,150)
 
 def main():
     pygame.init()
+    pygame.mixer.init()
+
+
     surface = pygame.display.set_mode((700,600))
     backGround = pygame.image.load(r'Background(700x600).png')
     keyboard = pygame.image.load(r'350x165keyboard.png')
+    logo = pygame.image.load(r'memorykeys.png')
 
-    C = ButtonClass.Button(15,(200,380), LIGHT_GRAY)
+    C = ButtonClass.Button(15,(200,380), LIGHT_GRAY, )
     Cs = ButtonClass.Button(9,(220,330), LIGHT_GRAY)
     D = ButtonClass.Button(15,(250,380), LIGHT_GRAY)
     Ds = ButtonClass.Button(9,(280,330), LIGHT_GRAY)
@@ -25,6 +29,7 @@ def main():
 
     surface.blit(backGround, (0, 0))
     surface.blit(keyboard, (175,235))
+    surface.blit(logo, (0,0))
 
     C.render(surface)
     Cs.render(surface)
@@ -45,6 +50,10 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
+            elif event.type==pygame.MOUSEBUTTONDOWN:
+                if C.rect.collidepoint(event.pos):
+                    C.sound.play()
 
             pygame.display.update()
 
