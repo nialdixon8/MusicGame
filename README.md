@@ -1,2 +1,2 @@
 # MusicGame
-play correct music notes
+Pygame Piano
